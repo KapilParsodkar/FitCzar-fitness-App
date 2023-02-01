@@ -1,0 +1,30 @@
+body{
+    background-color :#EAF6F6;
+    }
+    hr{
+      background-color:none;
+      border-style: none ;
+      border-top-style:dotted ;
+      border-color: grey;
+      border-width: 5px;
+      height: 0px;
+      width: 4%;
+    }
+    img:hover{
+      background-color: gold;
+    }
+    .k{
+      background-color:blue;
+    }
+    .KF{
+      background-color: green;
+     
+    }
+    .circular{
+      border-radius: 500%;
+      
+    }
+   
+    #k2{
+      color: red;
+    }

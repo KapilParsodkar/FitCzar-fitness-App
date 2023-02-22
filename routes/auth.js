@@ -6,8 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-const validateUser = require('../models/user');
-const User = require('../models/user');
+const { User, validateUser } = require('../models/user');
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
@@ -39,6 +38,7 @@ const secretKey = process.env.JWT_SECRET_KEY;
     });
  });*/
 
+ // Registration Route
 router.post('/register', async (req, res, next) => {
   const { error } = validateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);

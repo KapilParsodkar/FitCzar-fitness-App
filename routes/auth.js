@@ -10,35 +10,7 @@ const { User, validateUser } = require('../models/user');
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
-
-
 // Registration Route
-/*router.post('/register', async (req, res, next) => {
-  bcrypt.hash(req.body.password, 10)
-    .then(hash => {
-      const user = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        phoneNumber: req.body.phoneNumber,
-        email: req.body.email,
-        password: hash
-      });
-      user.save({ wtimeout: 30000 })
-        .then(result => {
-          res.status(201).json({
-            message: 'User created successfully!',
-            result: result
-          });
-        })
-        .catch(err => {
-          res.status(500).json({
-            error: err.message,
-          });
-        });
-    });
- });*/
-
- // Registration Route
 router.post('/register', async (req, res, next) => {
   const { error } = validateUser(req.body);
   if (error) return res.status(400).send(error.details[0].message);

@@ -1,8 +1,25 @@
-
 {
-    "firstName": "Arun",
-    "lastName": "Nayineni",
-    "email": "rao.nayineni1997@gmail.com",
-    "phoneNumber": "+15513284737",
-    "password": "Narender@123456"
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "phoneNumber": "+1-123-456-7890",
+    "password": "password@123",
+    "age": 25,
+    "gender": "male",
+    "height": 180,
+    "weight": 75,
+    "fitnessGoals": [
+        "muscle-gain",
+        "flexibility"
+    ],
+    "medicalConditions": [
+        "asthma"
+    ],
+    "dietaryRestrictions": [
+        "vegetarian",
+        "gluten-free"
+    ],
+    "workoutHistory": [
+        "regularly"
+    ]
 }

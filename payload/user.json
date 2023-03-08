@@ -1,11 +1,27 @@
 {
-    "_id": "63fa8adcaa569312c4fcc1ce",
-    "firstName": "Arun",
-    "lastName": "Nayineni",
-    "email": "rao.nayineni1997@gmail.com",
-    "phoneNumber": "+15513284737",
-    "password": "$2a$10$a4AR5bz/y1/mZqNXGw3Pu.YtOVx5V09KbOul1KzfF60fx26jygWwu",
-    "__v": 0,
-    "resetPasswordToken": "6bc2a1868330780992e2bdf3e1ecd74ae7f39636",
-    "resetPasswordTokenExpiry": "2023-02-25T23:32:37.480Z"
+    "_id": "6408dc1475cf744f8dee277f",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "johndoe@example.com",
+    "phoneNumber": "+1-123-456-7890",
+    "password": "$2a$10$Gy9NKBHe52LXsCO.PGoH4e1C9kG26.jI6Uo5Mgdmi1b.C3Trs.7B6",
+    "age": 25,
+    "gender": "male",
+    "height": 180,
+    "weight": 75,
+    "fitnessGoals": [
+        "muscle-gain",
+        "flexibility"
+    ],
+    "medicalConditions": [
+        "asthma"
+    ],
+    "dietaryRestrictions": [
+        "vegetarian",
+        "gluten-free"
+    ],
+    "workoutHistory": [
+        "regularly"
+    ],
+    "__v": 0
 }

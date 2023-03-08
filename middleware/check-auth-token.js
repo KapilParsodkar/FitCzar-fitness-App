@@ -3,6 +3,13 @@ const jwt = require('jsonwebtoken');
 // A set to store the invalidated tokens
 const tokenBlacklist = new Set();
 
+// Logout route
+const logout = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    tokenBlacklist.add(token);
+    res.status(200).json({ message: 'Logged out successfully' });
+  };
+  
 // Middleware to check if a token is valid
 const isValidToken = (token) => {
   try {
@@ -25,11 +32,6 @@ const checkAuthToken = (req, res, next) => {
   }
 };
 
-// Logout route
-const logout = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
-  tokenBlacklist.add(token);
-  res.status(200).json({ message: 'Logged out successfully' });
-};
 
 module.exports = { checkAuthToken, logout };
+

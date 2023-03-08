@@ -5,15 +5,16 @@ const bodyParser = require('body-parser');
 
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
+const workoutRoutes = require('./routes/workouts');
 
 const app = express();
 
-mongoose.connect('mongodb://127.0.0.1/fitczar', { useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect('mongodb://127.0.0.1/fitczar', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to database!');
+    console.log('Connected to MongoDB!');
   })
-  .catch(err=> {
-    console.log('Connection failed!', err);
+  .catch(err => {
+    console.log('Error connecting to MongoDB:', err);
   });
 
 app.use(bodyParser.json());
@@ -22,8 +23,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/workouts', workoutRoutes);
 
 module.exports = app;
 
-const port = process.env.PORT || 3000
-app.listen(port, () => console.log(`Listening to port ${port}...`));
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});

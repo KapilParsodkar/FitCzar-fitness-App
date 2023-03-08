@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const { User, validateUser } = require('../models/user');
+const Workout = require('../models/workout')
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
@@ -77,5 +78,6 @@ router.post('/login', (req, res, next) => {
       });
     });
 });
+
 
 module.exports = router;

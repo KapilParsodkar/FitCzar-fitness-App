@@ -1,0 +1,107 @@
+/* Base styles */
+/* The asterisk means this styling targets every item */
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+}
+
+
+body {
+  margin: 0;
+  background-color: #339933;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1
+{
+  font-size: 3em;
+  font-weight: bold;
+  background-color: transparent;
+  margin: 80px 8px 10px 8px;
+}
+
+p {
+  margin: 8px;
+}
+
+label {
+  margin: 8px;
+}
+
+input {
+  margin: 8px 0 8px 8px;
+}
+
+button {
+  margin: 8px;
+}
+
+div {
+  margin: 8px;
+}
+
+p.slogan {
+  margin: 8px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+/* Elements of the Start page */
+.start input {
+  width: 80%;
+  padding: 6px 10px;
+  margin: 10px 0;
+  box-sizing: border-box;
+}
+.start button {
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+}
+.start label {
+  /* NOT WORKING!  Why? */
+  margin-top: 8px;
+}
+.start button.new-account {
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 1.5em;
+  min-width: 6em;
+  border-radius: 6px;
+}
+
+/* Elements of the Profile page */
+.profile button.set-profile {
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 1.5em;
+  min-width: 6em;
+  border-radius: 6px;
+}
+.profile label {
+  font-weight: bold;
+}
+.profile div {
+  margin: auto;
+  width: 60%;
+}
+
+/* The Welcome page */
+.welcome textarea {
+  width: 40%;
+  min-height: 6em;
+}
+.welcome h3 {
+  margin: 1em 0 0.3em 0;
+}

@@ -1,0 +1,48 @@
+{
+  "users": [
+    {
+      "user_id": "alan@alan.com",
+      "password": "12345",
+      "phone": "18005551234",
+      "age": 21,
+      "height": 175,
+      "height-units": "cm",
+      "weight": 65,
+      "weight-units": "kg",
+      "id": 1
+    },
+    {
+      "user_id": "arun@arun.com",
+      "password": "12345",
+      "phone": "18005551234",
+      "age": 21,
+      "height": 175,
+      "height-units": "cm",
+      "weight": 65,
+      "weight-units": "kg",
+      "id": 2
+    },
+    {
+      "user_id": "kapil@kapil.com",
+      "password": "12345",
+      "phone": "18005551234",
+      "age": 21,
+      "height": 175,
+      "height-units": "cm",
+      "weight": 65,
+      "weight-units": "kg",
+      "id": 3
+    },
+    {
+      "user_id": "me@me.com",
+      "password": "12345",
+      "phone": "18005556789",
+      "age": "22",
+      "height": "68",
+      "height-units": "in",
+      "weight": "150",
+      "weight-units": "lbs",
+      "id": 4
+    }
+  ]
+}

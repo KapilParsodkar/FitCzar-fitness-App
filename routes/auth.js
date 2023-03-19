@@ -1,13 +1,13 @@
 require('dotenv').config();
 
 const express = require('express');
-const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
 
 const { User, validateUser } = require('../models/user');
-const Workout = require('../models/workout')
+const { checkAuthToken, logout } = require('../middleware/check-auth-token');
+
 
 const secretKey = process.env.JWT_SECRET_KEY;
 
@@ -26,7 +26,15 @@ router.post('/register', async (req, res, next) => {
       lastName: req.body.lastName,
       phoneNumber: req.body.phoneNumber,
       email: req.body.email,
-      password: hashedPassword
+      password: hashedPassword,
+      age: req.body.age,
+      gender: req.body.gender,
+      height: req.body.height,
+      weight: req.body.weight,
+      fitnessGoals: req.body.fitnessGoals,
+      medicalConditions: req.body.medicalConditions,
+      dietaryRestrictions: req.body.dietaryRestrictions,
+      workoutHistory: req.body.workoutHistory
     });
 
     const result = await newUser.save({ wtimeout: 30000 });
@@ -43,7 +51,6 @@ router.post('/register', async (req, res, next) => {
     });
   }
 });
-
 
 
 // Login Route
@@ -79,5 +86,15 @@ router.post('/login', (req, res, next) => {
     });
 });
 
+
+// Logout route
+// router.post('/logout', checkAuth, (req, res, next) => {
+//   const token = req.headers.authorization.split(' ')[1];
+//   tokenBlacklist.add(token);
+//   res.status(200).json({ message: 'Logged out successfully' });
+// });
+
+
+router.post('/logout', checkAuthToken, logout);
 
 module.exports = router;

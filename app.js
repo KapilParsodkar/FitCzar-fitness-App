@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 const authRoutes = require('./routes/auth');
@@ -8,6 +9,7 @@ const userRoutes = require('./routes/user');
 const workoutRoutes = require('./routes/workouts');
 
 const app = express();
+app.use(cors()); // enable CORS for all routes
 
 mongoose.connect('mongodb://127.0.0.1/fitczar', { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {

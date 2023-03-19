@@ -79,14 +79,15 @@ router.delete('/:id', checkAuth, async (req, res, next) => {
 });
 
 // Fetch workouts if the user is authenticated
-router.get('/', checkAuth, (req, res, next) => {
-  Workout.find({ creator: req.userData.userId }, (err, workouts) => {
-    if (err) {
-      return res.status(500).json({ error: err.message });
-    }
+router.get('/', checkAuth, async (req, res, next) => {
+  try {
+    const workouts = await Workout.find({ creator: req.userData.userId }).exec();
     return res.status(200).json({ workouts });
-  });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 });
+
 
 
 module.exports = router;

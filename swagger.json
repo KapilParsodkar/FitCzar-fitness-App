@@ -1,0 +1,151 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Fitness App APIs",
+        "description": "APIs for the Fitness App"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api",
+    "tags": [
+        {
+            "name": "User",
+            "description": "User related APIs"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/user/register": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Registers a new user",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "User",
+                        "in": "body",
+                        "description": "User object that needs to be registered",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User created successfully!",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "User created successfully!"
+                                },
+                                "token": {
+                                    "type": "string",
+                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjkwZDMxNDQ2NDEyYzEwNDAwMTYwODAiLCJpYXQiOjE1Mzg0NjE0NjAsImV4cCI6MTUzODQ2NTA2MH0.iY7-IkT35TLYkM3g6OfKjrwf9XJHxUrm1QW8qtRvR7k"
+                                },
+                                "result": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Validation error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "message": {
+                                    "type": "string",
+                                    "example": "Validation error message"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Server error",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "error": {
+                                    "type": "string",
+                                    "example": "Internal Server Error"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Authenticate a user",
+                "description": "Logs in a user with provided email and password",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "User credentials",
+                        "in": "body",
+                        "description": "User email and password",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LoginCredentials"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful authentication response",
+                        "schema": {
+                            "$ref": "#/definitions/LoginSuccess"
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid user credentials",
+                        "schema": {
+                            "$ref": "#/definitions/LoginFailure"
+                        }
+                    }
+                }
+            }
+        },
+        "LoginFailure": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message for failed authentication"
+                }
+            }
+        },
+        "Unauthorized": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "description": "Error message for unauthorized access"
+                }
+            }
+        }
+    }
+}

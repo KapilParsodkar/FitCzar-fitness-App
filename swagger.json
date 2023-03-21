@@ -268,13 +268,21 @@
                 "tags": [
                     "Users"
                 ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Logged out successfully"
                     },
                     "401": {
                         "description": "Authentication failed"
-                    }
+                    },
+                    "500": {
+                        "description": "Server error"
+                      }
                 }
             }
         },
@@ -608,6 +616,73 @@
                         "description": "Internal server error"
                     }
                 }
+            }
+        },
+        "/api/workouts/library-exercises": {
+            "get": {
+                "summary": "Fetch filtered exercises",
+                "tags": [
+                    "Exercises"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Search term to filter exercises by name, bodyPart, equipment, or target"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "bodyPart": {
+                                                "type": "string",
+                                                "description": "Body part the exercise targets"
+                                            },
+                                            "equipment": {
+                                                "type": "string",
+                                                "description": "Equipment needed for the exercise"
+                                            },
+                                            "gifUrl": {
+                                                "type": "string",
+                                                "description": "URL of the exercise animation"
+                                            },
+                                            "id": {
+                                                "type": "string",
+                                                "description": "Exercise identifier"
+                                            },
+                                            "name": {
+                                                "type": "string",
+                                                "description": "Exercise name"
+                                            },
+                                            "target": {
+                                                "type": "string",
+                                                "description": "Target muscle group"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "An error occurred while fetching the exercises"
+                    }
+                },
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ]
             }
         }
     }

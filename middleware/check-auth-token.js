@@ -22,8 +22,15 @@ const isValidToken = (token) => {
 
 // Middleware to protect routes that require authentication
 const checkAuthToken = (req, res, next) => {
-  const token = req.headers.authorization.split(' ')[1];
+  const authHeader = req.headers.authorization;
+  
+  if (!authHeader) {
+    return res.status(401).json({ message: 'Authentication failed!' });
+  }
+
+  const token = authHeader.split(' ')[1];
   const decodedToken = isValidToken(token);
+  
   if (decodedToken) {
     req.userData = { email: decodedToken.email, userId: decodedToken.userId };
     next();
@@ -31,6 +38,7 @@ const checkAuthToken = (req, res, next) => {
     res.status(401).json({ message: 'Authentication failed!' });
   }
 };
+
 
 
 module.exports = { checkAuthToken, logout };

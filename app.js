@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+mongoose.set('strictQuery', false); // to address deprecation warning
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');

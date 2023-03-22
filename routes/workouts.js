@@ -5,6 +5,7 @@ const router = express.Router();
 const axios = require('axios');
 const checkAuth  = require('../middleware/check-auth');
 const Workout = require('../models/workout')
+const { User } = require('../models/user');
 
 //RapidAPI credentials
 const RAPIDAPI_KEY = '5732d73a31msh79a182b5fc37c1cp1bc776jsnee65b8029201';
@@ -119,5 +120,105 @@ router.get('/library-exercises', checkAuth, async (req, res) => {
     res.status(500).json({ message: 'An error occurred while fetching the exercises.' });
   }
 });
+
+const exercises = [
+  {
+    name: 'Push-ups',
+    type: 'strength',
+    muscleGroups: ['chest', 'triceps', 'shoulders'],
+  },
+  {
+    name: 'Pull-ups',
+    type: 'strength',
+    muscleGroups: ['back', 'biceps', 'forearms'],
+  },
+  {
+    name: 'Squats',
+    type: 'strength',
+    muscleGroups: ['quadriceps', 'hamstrings', 'glutes', 'calves'],
+  },
+  {
+    name: 'Lunges',
+    type: 'strength',
+    muscleGroups: ['quadriceps', 'hamstrings', 'glutes'],
+  },
+  {
+    name: 'Plank',
+    type: 'strength',
+    muscleGroups: ['core'],
+  },
+  {
+    name: 'Running',
+    type: 'cardio',
+    muscleGroups: ['legs', 'glutes', 'cardiovascular'],
+  },
+  {
+    name: 'Jumping jacks',
+    type: 'cardio',
+    muscleGroups: ['cardiovascular', 'full-body'],
+  },
+  {
+    name: 'Cycling',
+    type: 'cardio',
+    muscleGroups: ['legs', 'glutes', 'cardiovascular'],
+  },
+  {
+    name: 'Swimming',
+    type: 'endurance',
+    muscleGroups: ['full-body', 'cardiovascular'],
+  },
+  {
+    name: 'Rowing',
+    type: 'endurance',
+    muscleGroups: ['full-body', 'cardiovascular'],
+  },
+];
+
+
+router.get('/recommendations/:userId', checkAuth, async (req, res) => {
+  const userId = req.params.userId;
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).send('User not found');
+  }
+
+  const fitnessGoals = user.fitnessGoals;
+  const workoutHistory = user.workoutHistory;
+  const recommendations = [];
+
+  // Adjust the number of recommended exercises based on workout history
+  let numExercises = 3;
+  if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
+    numExercises = 5;
+  } else if (workoutHistory.includes('occasionally')) {
+    numExercises = 4;
+  }
+
+  fitnessGoals.forEach((goal) => {
+    if (goal === 'weight-loss') {
+      const cardioExercises = exercises.filter((exercise) => exercise.type === 'cardio');
+      recommendations.push({
+        message: 'To support your weight loss goal, try these cardio exercises:',
+        exercises: cardioExercises.slice(0, numExercises),
+      });
+    } else if (goal === 'muscle-gain') {
+      const strengthExercises = exercises.filter((exercise) => exercise.type === 'strength');
+      recommendations.push({
+        message: 'To support your muscle building goal, try these strength exercises:',
+        exercises: strengthExercises.slice(0, numExercises),
+      });
+    } else if (goal === 'cardiovascular-health') {
+      const enduranceExercises = exercises.filter((exercise) => exercise.type === 'endurance');
+      recommendations.push({
+        message: 'To support your cardiovascular health goal, try these endurance exercises:',
+        exercises: enduranceExercises.slice(0, numExercises),
+      });
+    }
+  });
+
+  res.status(200).send(recommendations);
+});
+
 
 module.exports = router;

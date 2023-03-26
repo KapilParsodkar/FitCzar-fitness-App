@@ -24,12 +24,22 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
   },
 }));
 
-mongoose.connect('mongodb://127.0.0.1/fitczar', { useNewUrlParser: true, useUnifiedTopology: true })
+// mongoose.connect('mongodb://127.0.0.1/fitczar', { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => {
+//     console.log('Connected to MongoDB!');
+//   })
+//   .catch(err => {
+//     console.log('Error connecting to MongoDB:', err);
+//   });
+
+const connectionString = 'mongodb+srv://raonayineni:ViYA7Xtd9oLbRm2D@fitczarappcluster.spu6vxw.mongodb.net/fitczar?retryWrites=true&w=majority'
+
+mongoose.connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB!');
+    console.log('Connected to MongoDB Atlas!');
   })
   .catch(err => {
-    console.log('Error connecting to MongoDB:', err);
+    console.log('Error connecting to MongoDB Atlas:', err);
   });
 
 app.use(bodyParser.json());

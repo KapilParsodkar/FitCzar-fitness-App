@@ -684,6 +684,73 @@
                     }
                 ]
             }
-        }
+        },
+        "/api/workouts/recommendations/{userId}": {
+            "get": {
+              "tags": [
+                "Recommendations"
+              ],
+              "summary": "Get exercise recommendations for a user based on their fitness goals and workout history.",
+              "description": "Returns a list of recommended exercises for a user.",
+              "parameters": [
+                {
+                  "name": "userId",
+                  "in": "path",
+                  "description": "ID of the user to retrieve recommendations for.",
+                  "required": true,
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "An array of recommended exercises.",
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "message": {
+                          "type": "string",
+                          "description": "A message describing the purpose of the recommended exercises."
+                        },
+                        "exercises": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "The name of the exercise."
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "The type of the exercise (e.g., strength, cardio, endurance)."
+                              },
+                              "muscleGroups": {
+                                "type": "array",
+                                "items": {
+                                  "type": "string"
+                                },
+                                "description": "The muscle groups targeted by the exercise."
+                              }
+                            }
+                          },
+                          "description": "An array of exercise objects."
+                        }
+                      }
+                    }
+                  }
+                },
+                "404": {
+                  "description": "User not found."
+                }
+              },
+              "security": [
+                {
+                    "BearerAuth": []
+                }
+              ]
+            }
+          }          
     }
 }

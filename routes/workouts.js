@@ -6,6 +6,7 @@ const axios = require('axios');
 const checkAuth  = require('../middleware/check-auth');
 const Workout = require('../models/workout')
 const { User } = require('../models/user');
+const exercises = require('../utils/exercises');
 
 //RapidAPI credentials
 const RAPIDAPI_KEY = '5732d73a31msh79a182b5fc37c1cp1bc776jsnee65b8029201';
@@ -121,60 +122,6 @@ router.get('/library-exercises', checkAuth, async (req, res) => {
   }
 });
 
-const exercises = [
-  {
-    name: 'Push-ups',
-    type: 'strength',
-    muscleGroups: ['chest', 'triceps', 'shoulders'],
-  },
-  {
-    name: 'Pull-ups',
-    type: 'strength',
-    muscleGroups: ['back', 'biceps', 'forearms'],
-  },
-  {
-    name: 'Squats',
-    type: 'strength',
-    muscleGroups: ['quadriceps', 'hamstrings', 'glutes', 'calves'],
-  },
-  {
-    name: 'Lunges',
-    type: 'strength',
-    muscleGroups: ['quadriceps', 'hamstrings', 'glutes'],
-  },
-  {
-    name: 'Plank',
-    type: 'strength',
-    muscleGroups: ['core'],
-  },
-  {
-    name: 'Running',
-    type: 'cardio',
-    muscleGroups: ['legs', 'glutes', 'cardiovascular'],
-  },
-  {
-    name: 'Jumping jacks',
-    type: 'cardio',
-    muscleGroups: ['cardiovascular', 'full-body'],
-  },
-  {
-    name: 'Cycling',
-    type: 'cardio',
-    muscleGroups: ['legs', 'glutes', 'cardiovascular'],
-  },
-  {
-    name: 'Swimming',
-    type: 'endurance',
-    muscleGroups: ['full-body', 'cardiovascular'],
-  },
-  {
-    name: 'Rowing',
-    type: 'endurance',
-    muscleGroups: ['full-body', 'cardiovascular'],
-  },
-];
-
-
 router.get('/recommendations/:userId', checkAuth, async (req, res) => {
   const userId = req.params.userId;
   const user = await User.findById(userId);
@@ -188,11 +135,11 @@ router.get('/recommendations/:userId', checkAuth, async (req, res) => {
   const recommendations = [];
 
   // Adjust the number of recommended exercises based on workout history
-  let numExercises = 3;
+  let numExercises = 4;
   if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
-    numExercises = 5;
+    numExercises = 8;
   } else if (workoutHistory.includes('occasionally')) {
-    numExercises = 4;
+    numExercises = 6;
   }
 
   fitnessGoals.forEach((goal) => {

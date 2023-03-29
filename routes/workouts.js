@@ -187,13 +187,17 @@ router.get('/recommendations/:userId', checkAuth, async (req, res) => {
   const gender = user.gender;
   const BMR = calculateBMR(weight, height, age, gender);
 
-  // Adjust the number of recommended exercises based on workout history
-  let numExercises = 4;
-  if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
-    numExercises = 8;
-  } else if (workoutHistory.includes('occasionally')) {
-    numExercises = 6;
-  }
+  
+  // Adjust the number of recommended exercises based on BMR and workout history
+ // Adjust the number of recommended exercises based on workout history and medical conditions
+let numExercises = adjustNumExercises(BMR, workoutHistory, medicalConditions);
+
+
+  // if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
+  //   numExercises = 8;
+  // } else if (workoutHistory.includes('occasionally')) {
+  //   numExercises = 6;
+  // }
 
   // Filter exercises based on medical conditions
   const filteredExercises = filterExercisesByMedicalConditions(exercises, medicalConditions);
@@ -201,10 +205,58 @@ router.get('/recommendations/:userId', checkAuth, async (req, res) => {
   // Generate recommendations
   fitnessGoals.forEach((goal) => {
     // ... (use `filteredExercises` instead of `exercises` in your existing logic)
+    if (goal === 'weight-loss') {
+      const cardioExercises = filteredExercises.filter((exercise) => exercise.type === 'cardio');
+      recommendations.push({
+        message: 'To support your weight loss goal, try these cardio exercises:',
+        exercises: cardioExercises.slice(0, numExercises),
+      });
+    } else if (goal === 'muscle-gain') {
+      const strengthExercises = filteredExercises.filter((exercise) => exercise.type === 'strength');
+      recommendations.push({
+        message: 'To support your muscle building goal, try these strength exercises:',
+        exercises: strengthExercises.slice(0, numExercises),
+      });
+    } else if (goal === 'cardiovascular-health') {
+      const enduranceExercises = filteredExercises.filter((exercise) => exercise.type === 'endurance');
+      recommendations.push({
+        message: 'To support your cardiovascular health goal, try these endurance exercises:',
+        exercises: enduranceExercises.slice(0, numExercises),
+      });
+    }
   });
 
   res.status(200).send(recommendations);
 });
+
+function adjustNumExercises(BMR, workoutHistory, medicalConditions) {
+  let baseExercises = 4;
+
+  if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
+    baseExercises = 8;
+  } else if (workoutHistory.includes('occasionally')) {
+    baseExercises = 6;
+  }
+
+  if (BMR >= 2500) {
+    baseExercises += 2; // Higher BMR, add 2 more exercises
+  } else if (BMR >= 2000) {
+    baseExercises += 1; // Moderate BMR, add 1 more exercise
+  }
+
+  // Adjust number of exercises based on medical conditions
+  if (medicalConditions.includes('diabetes')) {
+    baseExercises -= 1; // Reduce exercises for users with diabetes
+  }
+  if (medicalConditions.includes('high-blood-pressure')) {
+    baseExercises -= 1; // Reduce exercises for users with high blood pressure
+  }
+
+  // ... (add more adjustments based on other medical conditions)
+
+  return baseExercises;
+}
+
 
 function calculateBMR(weight, height, age, gender) {
   // Calculate BMR using Mifflin-St Jeor Equation

@@ -1,15 +1,15 @@
 ## SSW 695-A: Software Engineering Capstone Studio 
 Team FitCzar 
 
-# Team Members
-1.Arun Rao Nayineni
-2.Alan
-3.Kapil Parsodkar
+## Team Members
+*1.Arun Rao Nayineni
+*2.Alan Clark
+*3.Kapil Parsodkar
 
-# Introduction
+## Introduction
 FitCzar is a Web application for assisting users as they pursue customized health and fitness goals.  It will track progress, make recommendations, accept user choices and updates, and connect users with resources to support their health and fitness journey.
 
-# Scope
+## Scope
 FitCzar will consist of the following components:
 1. Web app(FitCzar fitness App)
 This application will allow each user to create and update a profile of their health and fitness data, and their personal goals.  It will convey this information to the analysis program, receive and display recommendations made by the analysis program, report user choices and updates back to the analysis program, and remind users of actions required by their chosen regimen at appropriate times.  Users will have full control over whether and when to receive these notifications.

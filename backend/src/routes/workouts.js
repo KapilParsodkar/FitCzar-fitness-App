@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const checkAuth  = require('../middleware/check-auth');
+const checkAuth = require('../middleware/check-auth');
 const Workout = require('../models/workout')
 const { User } = require('../models/user');
 const exercises = require('../utils/exercises');
@@ -122,89 +122,84 @@ router.get('/library-exercises', checkAuth, async (req, res) => {
   }
 });
 
-// router.get('/recommendations/:userId', checkAuth, async (req, res) => {
-//   const userId = req.params.userId;
-//   const user = await User.findById(userId);
-
-//   if (!user) {
-//     return res.status(404).send('User not found');
-//   }
-
-//   const fitnessGoals = user.fitnessGoals;
-//   const workoutHistory = user.workoutHistory;
-//   const recommendations = [];
-
-//   // Adjust the number of recommended exercises based on workout history
-//   let numExercises = 4;
-//   if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
-//     numExercises = 8;
-//   } else if (workoutHistory.includes('occasionally')) {
-//     numExercises = 6;
-//   }
-
-//   fitnessGoals.forEach((goal) => {
-//     if (goal === 'weight-loss') {
-//       const cardioExercises = exercises.filter((exercise) => exercise.type === 'cardio');
-//       recommendations.push({
-//         message: 'To support your weight loss goal, try these cardio exercises:',
-//         exercises: cardioExercises.slice(0, numExercises),
-//       });
-//     } else if (goal === 'muscle-gain') {
-//       const strengthExercises = exercises.filter((exercise) => exercise.type === 'strength');
-//       recommendations.push({
-//         message: 'To support your muscle building goal, try these strength exercises:',
-//         exercises: strengthExercises.slice(0, numExercises),
-//       });
-//     } else if (goal === 'cardiovascular-health') {
-//       const enduranceExercises = exercises.filter((exercise) => exercise.type === 'endurance');
-//       recommendations.push({
-//         message: 'To support your cardiovascular health goal, try these endurance exercises:',
-//         exercises: enduranceExercises.slice(0, numExercises),
-//       });
-//     }
-//   });
-
-//   res.status(200).send(recommendations);
-// });
-
 router.get('/recommendations/:userId', checkAuth, async (req, res) => {
-  const userId = req.params.userId;
+  const { userId } = req.params;
   const user = await User.findById(userId);
 
   if (!user) {
     return res.status(404).send('User not found');
   }
 
-  const fitnessGoals = user.fitnessGoals;
-  const workoutHistory = user.workoutHistory;
-  const medicalConditions = user.medicalConditions;
+  const { fitnessGoals, workoutHistory, medicalConditions, weight, height, age, gender } = user;
   const recommendations = [];
 
   // Calculate BMR
-  const weight = user.weight;
-  const height = user.height;
-  const age = user.age;
-  const gender = user.gender;
   const BMR = calculateBMR(weight, height, age, gender);
 
-  // Adjust the number of recommended exercises based on workout history
-  let numExercises = 4;
-  if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
-    numExercises = 8;
-  } else if (workoutHistory.includes('occasionally')) {
-    numExercises = 6;
-  }
+  // Adjust the number of recommended exercises based on BMR, workout history and medical conditions
+  const numExercises = adjustNumExercises(BMR, workoutHistory, medicalConditions);
 
   // Filter exercises based on medical conditions
   const filteredExercises = filterExercisesByMedicalConditions(exercises, medicalConditions);
 
   // Generate recommendations
   fitnessGoals.forEach((goal) => {
-    // ... (use `filteredExercises` instead of `exercises` in your existing logic)
+    let exerciseType;
+    let message;
+
+    switch (goal) {
+      case 'weight-loss':
+        exerciseType = 'cardio';
+        message = 'To support your weight loss goal, try these cardio exercises:';
+        break;
+      case 'muscle-gain':
+        exerciseType = 'strength';
+        message = 'To support your muscle building goal, try these strength exercises:';
+        break;
+      case 'cardiovascular-health':
+        exerciseType = 'endurance';
+        message = 'To support your cardiovascular health goal, try these endurance exercises:';
+        break;
+    }
+
+    const filtered = filteredExercises.filter((exercise) => exercise.type === exerciseType);
+    recommendations.push({
+      message,
+      exercises: filtered.slice(0, numExercises),
+    });
   });
 
   res.status(200).send(recommendations);
 });
+
+function adjustNumExercises(BMR, workoutHistory, medicalConditions) {
+  let baseExercises = 4;
+
+  if (workoutHistory.includes('regularly') || workoutHistory.includes('athlete')) {
+    baseExercises = 8;
+  } else if (workoutHistory.includes('occasionally')) {
+    baseExercises = 6;
+  }
+
+  if (BMR >= 2500) {
+    baseExercises += 2; // Higher BMR, add 2 more exercises
+  } else if (BMR >= 2000) {
+    baseExercises += 1; // Moderate BMR, add 1 more exercise
+  }
+
+  // Adjust number of exercises based on medical conditions
+  if (medicalConditions.includes('diabetes')) {
+    baseExercises -= 1; // Reduce exercises for users with diabetes
+  }
+  if (medicalConditions.includes('high-blood-pressure')) {
+    baseExercises -= 1; // Reduce exercises for users with high blood pressure
+  }
+
+  // ... (add more adjustments based on other medical conditions)
+
+  return baseExercises;
+}
+
 
 function calculateBMR(weight, height, age, gender) {
   // Calculate BMR using Mifflin-St Jeor Equation

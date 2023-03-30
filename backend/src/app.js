@@ -4,7 +4,7 @@ mongoose.set('strictQuery', false); // to address deprecation warning
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
+const swaggerDocument = require('../swagger.json');
 
 
 const authRoutes = require('./routes/auth');

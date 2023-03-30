@@ -2,9 +2,9 @@
 Team FitCzar 
 
 ## Team Members
-*1.Arun Rao Nayineni
-*2.Alan Clark
-*3.Kapil Parsodkar
+**1.Arun Rao Nayineni
+**2.Alan Clark
+**3.Kapil Parsodkar
 
 ## Introduction
 FitCzar is a Web application for assisting users as they pursue customized health and fitness goals.  It will track progress, make recommendations, accept user choices and updates, and connect users with resources to support their health and fitness journey.

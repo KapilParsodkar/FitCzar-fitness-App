@@ -1,7 +1,7 @@
 ## SSW 695-A: Software Engineering Capstone Studio 
 Team FitCzar 
 
-## Team Members:
+## Team Members
 1. Arun Rao Nayineni
 2. Alan Clark
 3. Kapil Parsodkar

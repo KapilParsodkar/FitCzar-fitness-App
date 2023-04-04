@@ -18,6 +18,7 @@ const nav=useNavigate()
     })
 }
 
+// Called by the "Login" button
 const login=()=>{
   axios.post("http://localhost:3003/login", user)
   .then(res => {
@@ -30,6 +31,7 @@ const login=()=>{
   });
 }
 
+  // Render the page
   return (
      <Container maxW={'container.xl'} h={'100vh'} p={'16'}>
     <form>
@@ -51,11 +53,11 @@ const login=()=>{
 
 
 
-<div className='button' onClick={login}>Login</div>
+<div className='button' onClick={login}>Log In</div>
 
         <Text textAlign={'right'}>
           New User?{' '}
-          <div className='button' onClick={() => nav("/signup")}>SignUp</div>
+          <div className='button' onClick={() => nav("/signup")}>Sign Up</div>
       
         </Text>
       </VStack>

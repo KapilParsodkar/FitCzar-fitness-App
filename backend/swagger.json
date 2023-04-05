@@ -45,11 +45,44 @@
                         "type": "string"
                     },
                     "height": {
-                        "type": "number"
-                    },
-                    "weight": {
-                        "type": "number"
-                    },
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "number"
+                          },
+                          "unit": {
+                            "type": "string",
+                            "enum": [
+                              "cm",
+                              "ft"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "value",
+                          "unit"
+                        ]
+                      },
+                      "weight": {
+                        "type": "object",
+                        "properties": {
+                          "value": {
+                            "type": "number"
+                          },
+                          "unit": {
+                            "type": "string",
+                            "enum": [
+                              "g",
+                              "lbs",
+                              "kg"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "value",
+                          "unit"
+                        ]
+                      },
                     "fitnessGoals": {
                         "type": "array",
                         "items": {

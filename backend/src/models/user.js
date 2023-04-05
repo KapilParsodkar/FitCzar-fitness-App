@@ -47,16 +47,30 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   height: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 300
+    value: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 300
+    },
+    unit: {
+      type: String,
+      enum: ['cm', 'ft'],
+      required: true
+    }
   },
   weight: {
-    type: Number,
-    required: true,
-    min: 0,
-    max: 1000
+    value: {
+      type: Number,
+      required: true,
+      min: 0,
+      max: 1000
+    },
+    unit: {
+      type: String,
+      enum: ['g', 'lbs', 'kg'],
+      required: true
+    }
   },
   fitnessGoals: {
     type: [String],
@@ -93,8 +107,14 @@ function validateUser(user) {
     password: Joi.string().min(12).max(100).required(),
     age: Joi.number().integer().min(18).max(120).required(),
     gender: Joi.string().valid('male', 'female', 'non-binary').required(),
-    height: Joi.number().min(0).max(300).required(),
-    weight: Joi.number().min(0).max(1000).required(),
+    height: Joi.object({
+      value: Joi.number().min(0).max(300).required(),
+      unit: Joi.string().valid('cm', 'ft').required()
+    }).required(),
+    weight: Joi.object({
+      value: Joi.number().min(0).max(1000).required(),
+      unit: Joi.string().valid('g', 'lbs', 'kg').required()
+    }).required(),
     fitnessGoals: Joi.array().items(Joi.string().valid('weight-loss', 'muscle-gain', 'cardiovascular-health', 'flexibility', 'other')).required(),
     medicalConditions: Joi.array().items(Joi.string().valid('diabetes', 'high-blood-pressure', 'asthma', 'arthritis', 'other')),
     dietaryRestrictions: Joi.array().items(Joi.string().valid('vegan', 'vegetarian', 'pescatarian', 'gluten-free', 'dairy-free', 'other')),

@@ -101,6 +101,20 @@ app.post("/login", (req, res) => {
     }
   });
   
+  app.get("/profile/:id", async (req, res) => {
+    try {
+      const userId = req.params.id;
+      const user = await User.findById(userId);
+      if (user) {
+        res.json(user);
+      } else {
+        res.status(404).json({ message: "User not found" });
+      }
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "Internal server error" });
+    }
+  });
 
 app.listen(3003,() => {
     console.log("started at port 3003")

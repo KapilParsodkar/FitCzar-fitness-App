@@ -31,7 +31,16 @@ const Header = () => {
       <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
         <Link to={'/'}>Home</Link>
       </Button>
-    
+      <Text>Exercises</Text>
+      <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
+        <Link to={'/easy'}>Easy level</Link>
+      </Button>
+      <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
+        <Link to={'/medium'}>Medium Level</Link>
+      </Button>
+      <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
+        <Link to={'/hard'}>Hard level</Link>
+      </Button>
 
 
 

@@ -7,6 +7,15 @@ import Signup from './components/SignUp';
 import Login from './components/Login';
 import ExerciseHome from './components/Exercise';
 import Profile from './components/profile';
+import Easy from './Exercises/Easy';
+import Hard from './Exercises/Hard';
+import Medium from './Exercises/Medium';
+import Elegs from './Exercises/Elegs';
+import Eupper from './Exercises/Eupper';
+import Mupper from './Exercises/Mupper';
+import Mlegs from './Exercises/Mlegs';
+import HUpper from './Exercises/HUpper';
+import Hlegs from './Exercises/Hlegs';
 
 
 function App() {
@@ -29,6 +38,15 @@ function App() {
 
     
         <Route path="/profile" element={<Profile/>}/>
+         <Route path="/easy" element={<Easy/>}/>
+        <Route path="/medium" element={<Medium/>}/>
+        <Route path="/hard" element={<Hard/>}/>
+        <Route path="/elegs" element={<Elegs/>}/>
+        <Route path="/eupper" element={<Eupper/>}/>
+        <Route path="/mlegs" element={<Mlegs/>}/>
+        <Route path="/mupper" element={<Mupper/>}/>
+        <Route path="/hlegs" element={<Hlegs/>}/>
+        <Route path="/hupper" element={<HUpper/>}/>
             </Routes>
 
      <Footer/>

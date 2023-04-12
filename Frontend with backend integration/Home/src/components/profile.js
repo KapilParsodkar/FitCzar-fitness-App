@@ -25,7 +25,7 @@ const Profile = ({setLoginUser}) => {
   const nav = useNavigate();
   const [post, setPost] = useState([])
   // To capture data from Login
-  const location = useLocation();
+//  const location = useLocation();
 
   // Data set on this page
   const [firstName, setFirstName] = useState('');
@@ -101,15 +101,9 @@ const Profile = ({setLoginUser}) => {
       <p>Please provide your data and physiological profile.</p>
       <p>You’ll be able to update this information at any time.</p>
 
-      <VStack
-        alignItems={"stretch"}
-        spacing={"4"}
-        w={["full", "96"]}
-        m={"auto"}
-        my={"16"}
-      >
+      <VStack>
 
-{/* 
+{ 
       <table border={'122px'}>
         <tr>
           <th>Name</th>
@@ -124,7 +118,7 @@ const Profile = ({setLoginUser}) => {
           )
         })}
       </table>
-*/}    
+}    
 
       {/* Input controls to collect user profile data */}
       <div className="firstName">

@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import Signup from './components/SignUp';
 import Login from './components/Login';
 import ExerciseHome from './components/Exercise';
+import Profile from './components/profile';
 
 
 function App() {

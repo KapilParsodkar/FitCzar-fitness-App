@@ -91,6 +91,15 @@ app.post("/login", (req, res) => {
       });
       
   }) 
+
+    app.get("/profile", async (req, res) => {
+    try {
+      const users = await User.find();
+      res.json(users);
+    } catch (err) {
+      console.log(err);
+    }
+  });
   
 
 app.listen(3003,() => {

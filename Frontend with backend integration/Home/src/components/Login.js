@@ -3,6 +3,8 @@ import { Container, VStack,Heading,Input,Text } from '@chakra-ui/react'
 import './button.css'
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+
+
 const Login = ({  setLoginUser}) => {
 const nav=useNavigate()
   const [user,setuser]=useState({
@@ -10,6 +12,8 @@ const nav=useNavigate()
     password:""
   })
 
+
+  // Update the value of the control that has changed
   const handleChange = e => {
     const { name, value } = e.target
     setuser({
@@ -17,6 +21,7 @@ const nav=useNavigate()
         [name]: value
     })
 }
+
 
 // Called by the "Login" button
 const login=()=>{

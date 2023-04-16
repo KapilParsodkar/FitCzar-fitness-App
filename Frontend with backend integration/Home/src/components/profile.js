@@ -13,6 +13,8 @@ import {
   Text,
   Container,
   Table,
+  Input,
+  Select,
 } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -21,30 +23,45 @@ import { useLocation } from "react-router-dom"
 import './exercise.css'
 
 
+// FUNCTION FOR THIS PAGE
 const Profile = ({setLoginUser}) => {
   const nav = useNavigate();
   const [post, setPost] = useState([])
   // To capture data from Login
 //  const location = useLocation();
 
-  // Data set on this page
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [age, setAge] = useState('');
-  const [gender, setGender] = useState('');
-  const [height, setHeight] = useState('');
-  const [heightUnits, setHeightUnits] = useState('cm');
-  const [weight, setWeight] = useState('');
-  const [weightUnits, setWeightUnits] = useState('kg');
-  const [phoneNumber, setPhone] = useState('');
-  const [fitnessGoals, setFitnessGoals] = useState('');
-  const [medicalConditions, setMedicalConditions] = useState('');
-  const [dietaryRestrictions, setDietaryRestrictions] = useState('');
-  const [workoutHistory, setWorkoutHistory] = useState('');
-
-  // Will want to pull this list from a database rather than hard-coding it here
+  // Will want to pull these lists from a database rather than hard-coding them here
   const allGoals = ["Muscle gain", "Weight loss", "Flexibility", "Aerobic endurance", "Mobility", "Health maintenance"];
-  const [myGoals, setGoals] = useState([]);
+  const allMedicalConditions = ["Diabetes", "High blood pressure", "Asthma", "Arthritis", "Other"];
+  const allDietaryRestrictions = ["Vegetarian", "Vegan", "Gluten-free", "Dairy-free", "Pescatarian", "Other"];
+  //const [myGoals, setGoals] = useState([]);
+
+  // Data set on this page
+  const [profile, setProfile] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    age: "",
+    gender: "",
+    height: "",
+    heightUnits: "",
+    weight: "",
+    weightUnits: "",
+    fitnessGoals: [""],
+    medicalConditions: [""],
+    dietaryRestrictions: [""],
+    workoutHistory: ""
+  })
+  
+  
+  // Update the value for whichever control has changed
+  const handleChange = e => {
+    const { name, value } = e.target
+    setProfile({
+      ...profile,
+      [name]: value
+    })
+  }
 
 
   useEffect(() => {
@@ -55,30 +72,16 @@ const Profile = ({setLoginUser}) => {
     });
   }, []);
 
+
   // Pressing a button in a form fires the Submit event for that form.
-  // Therefore, this runs when the user clicks the Enter button.
+  // Therefore, this runs when the user clicks the Update Profile button.
   // Write user profile data to storage
   const updateBiometrics = (e) => {
     // Prevent page refresh (that's the default action)
     e.preventDefault();
-    // The biometrics
-    const biometrics = {"firstName": firstName,
-                        "lastName": lastName,
-                        "phoneNumber": phoneNumber,
-                        "age": age,
-                        "gender": gender,
-                        "height": height,
-                        "heightUnits": heightUnits,
-                        "weight": weight,
-                        "weightUnits": weightUnits,
-                        "fitnessGoals": [],
-                        "medicalConditions": [],
-                        "dietaryRestrictions": [],
-                        "workoutHistory": []
-                        }
-    // Add them to the list of user profiles (profiles.json)
 
-    axios.post("http://localhost:3003/signup", biometrics)
+    // Send the data object to the back end and get its response
+    axios.post("http://localhost:3003/signup", profile)
       .then(res => {
         alert(res.data.message);
         nav("/exercisehome")
@@ -94,8 +97,9 @@ const Profile = ({setLoginUser}) => {
   if (!post) return <div>Loading...</div>;
 
 
-  // Render the page
+  // RENDER THE PAGE
   return (
+
     <Container maxW={"container.xl"} h={"100vh"} p={"16"}>
       <Text fontSize="6xl">Profile</Text>
       <p>Please provide your data and physiological profile.</p>
@@ -103,7 +107,7 @@ const Profile = ({setLoginUser}) => {
 
       <VStack>
 
-{ 
+      {/*
       <table border={'122px'}>
         <tr>
           <th>Name</th>
@@ -118,129 +122,94 @@ const Profile = ({setLoginUser}) => {
           )
         })}
       </table>
-}    
+      */}   
 
-      {/* Input controls to collect user profile data */}
-      <div className="firstName">
-        <input
-          value={ firstName }
-          type="string"
-          placeholder="enter first name"
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-      </div>
+        {/* Input controls to collect user profile data */}
 
-      <div className="lastName">
-        <input
-          value={ lastName }
-          type="string"
-          placeholder="enter last name"
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </div>
+        <div className="firstName">
+          <Input type="text"    name="firstName"  placeholder="enter first name"  value={profile.firstName}   onChange={handleChange} />
+        </div>
 
-      <div className="age">
-        <input
-          required
-          value={ age }
-          type="integer"
-          placeholder='age (years)'
-          onChange={(e) => setAge(e.target.value)}
-        />
-      </div>
+        <div className="lastName">
+          <Input type="text"    name="lastName"   placeholder="enter last name"  value={profile.lastName}    onChange={handleChange} />
+        </div>
 
-      <div className="gender">
-        <select onChange={(e) => setGender(e.target.value)}>
-          <option value="default" disabled hidden>select gender</option>
-          <option value='male'>Male</option>
-          <option value='female'>Female</option>
-          <option value='non-binary'>Non-binary</option>
-        </select>
-      </div>
+        <div className="age">
+          <Input type="integer" name="age"        placeholder="enter age (years)" value={profile.age}         onChange={handleChange} />
+        </div>
 
-      <div className="height">
-        <input
-          required
-          value={ height }
-          type="integer"
-          placeholder='height'
-          onChange={(e) => setHeight(e.target.value)}
-        />
-        <select onChange={(e) => setHeightUnits(e.target.value)}>
-          <option value='cm'>cm</option>
-          <option value='in'>inches</option>
-        </select>
-      </div>
+        <div className="gender">
+          <Select type="text" name="gender" value={profile.gender} onChange={handleChange}>
+            <option selected hidden disabled value="">select gender</option>
+            <option value="option1">Male</option>
+            <option value="option2">Female</option>
+            <option value="option3">Non-binary</option>
+          </Select>
+        </div>
 
-      <div className="weight">
-        <input
-          required
-          value={ weight }
-          type="integer"
-          placeholder='weight'
-          onChange={(e) => setWeight(e.target.value)}
-        />
-        <select onChange={(e) => setWeightUnits(e.target.value)}>
-          <option value='kg'>kg</option>
-          <option value='lbs'>pounds</option>
-          </select>
+        <div className="height">
+          <HStack>
+            <Input type="integer" name="height"     placeholder="enter height"      value={profile.height}      onChange={handleChange} />
+            <Select type="text" name="heightUnits" value={profile.heightUnits} onChange={handleChange}>
+              <option value="option1">inches</option>
+              <option value="option2">cm</option>
+            </Select>
+          </HStack>
+        </div>
+
+        <div className="weight">
+          <HStack>
+            <Input type="integer" name="weight" placeholder="enter weight" value={profile.weight} onChange={handleChange} />
+            <Select type="text" name="weightUnits" value={profile.weightUnits} onChange={handleChange}>
+              <option value="option1">pounds</option>
+              <option value="option2">kg</option>
+            </Select>
+          </HStack>
         </div>
 
         <div className="phoneNumber">
-          <input
-            value={ phoneNumber }
-            type="string"
-            onChange={(e) => setPhone(e.target.value)}
-            placeholder='mobile phone'
-          />
+          <Input type="text" name="phoneNumber" placeholder="enter mobile phone" value={profile.phoneNumber} onChange={handleChange} />
         </div>
 
         <div className="fitnessGoals">
-          <select onChange={(e) => setFitnessGoals(e.target.value)}>
-            <option value="default" disabled hidden>select fitness goals</option>
-            <option value='weight-loss'>Weight loss</option>
-            <option value='muscle-gain'>Muscle gain</option>
-            <option value='cardiovascular-health'>Cardiovascular health</option>
-            <option value='flexibility'>Flexibility</option>
-            <option value='other'>Other</option>
-          </select>
+          <Select type="text" name="fitnessGoals" value={profile.fitnessGoals} onChange={handleChange}>
+            <option selected hidden disabled value="">select fitness goal(s)</option>
+            {allGoals.map(item => {
+              return (<option>{item}</option>);
+            })}
+          </Select>
         </div>
 
         <div className="medicalConditions">
-          <select onChange={(e) => setMedicalConditions(e.target.value)}>
-            <option value="default" disabled hidden>select any known health issues</option>
-            <option value='diabetes'>Diabetes</option>
-            <option value='high-blood-pressure'>High blood pressure</option>
-            <option value='asthma'>Asthma</option>
-            <option value='arthritis'>Arthritis</option>
-            <option value='other'>Other</option>
-          </select>
+          <Select type="text" name="medicalConditions" value={profile.medicalConditions} onChange={handleChange}>
+            <option selected hidden disabled value="">select any medical conditions</option>
+            {allMedicalConditions.map(item => {
+              return (<option>{item}</option>);
+            })}
+          </Select>
         </div>
 
         <div className="dietaryRestrictions">
-          <select onChange={(e) => setDietaryRestrictions(e.target.value)}>
-            <option value="default" disabled hidden>select any dietary restrictions</option>
-            <option value='vegetarian'>Vegetarian</option>
-            <option value='vegan'>Vegan</option>
-            <option value='gluten-free'>Gluten-free</option>
-            <option value='dairy-free'>Dairy-free</option>
-            <option value='pescatarian'>Pescatarian</option>
-            <option value='other'>Other</option>
-          </select>
+          <Select type="text" name="dietaryRestrictions" value={profile.dietaryRestrictions} onChange={handleChange}>
+            <option selected hidden disabled value="">select any dietary restrictions</option>
+            {allDietaryRestrictions.map(item => {
+              return (<option>{item}</option>);
+            })}
+          </Select>
         </div>
 
         <div className="workoutHistory">
-          <select onChange={(e) => setWorkoutHistory(e.target.value)}>
-            <option value="default" disabled hidden>select exercise level</option>
-            <option value='never-worked-out'>Beginner</option>
-            <option value='occasionally'>Occasional exercise</option>
-            <option value='regularly'>Regular exercise</option>
-            <option value='athlete'>Athlete</option>
-          </select>
+          <Select type="text" name="workoutHistory" value={profile.workoutHistory} onChange={handleChange}>
+            <option selected hidden disabled value="">select exercise level</option>
+            <option value='option1'>Beginner</option>
+            <option value='option2'>Occasional exercise</option>
+            <option value='option3'>Regular exercise</option>
+            <option value='option4'>Athlete</option>
+          </Select>
         </div>
 
-        <div className="button" onClick={() => nav("/exercisehome")}>
-          Update Profile
+        <div className="button" onClick={updateBiometrics}>
+          Update profile
         </div>
 
 

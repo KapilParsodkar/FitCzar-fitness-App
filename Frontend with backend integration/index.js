@@ -107,21 +107,22 @@ app.get("/profile", async (req, res) => {
   }
 });
 
-// Fetch user profiles by id
-app.get("/profile/:id", async (req, res) => {
+// Fetch user profile by userId
+app.get("/profile/:userId", async (req, res) => {
   try {
-    const userId = req.params.id;
-    const user = await User.findById(userId);
-    if (user) {
-      res.json(user);
+    const userId = req.params.userId;
+    const profile = await Profile.findOne({ user: userId });
+    if (profile) {
+      res.json(profile);
     } else {
-      res.status(404).json({ message: "User not found" });
+      res.status(404).json({ message: "Profile not found" });
     }
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });
   }
 });
+
 
 // Updates user profile data based on user id
 app.put("/profile/:userId", async (req, res) => {

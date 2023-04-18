@@ -28,7 +28,7 @@ const Elegs = () => {
 
   return (
     <Box>
-      <Text style={{ textAlign: 'center' }} fontSize={"6xl"}>Leg Exercises</Text>
+      <Text style={{ textAlign: 'center' }} fontSize={"6xl"}>Leg Exercises - Beginning</Text>
       <VStack>
 
         <Heading textTransform={"uppercase"} py="2" w={"fit-content"} borderBottom={'2px solid'} m="auto">Squats</Heading>

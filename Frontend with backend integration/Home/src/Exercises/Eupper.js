@@ -20,6 +20,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 
 import curls from "../assests/upper/dumbellCurls.png"
 import overheadPress from "../assests/upper/overheadPress.png"
+import extensions from "../assests/upper/backExtensions.png"
 
 
 const Eupper = () => {
@@ -40,7 +41,7 @@ const Eupper = () => {
             <li>Slowly lower to starting position without losing tension on the muscle, and repeat.</li>
           </ol>
           <Text fontSize={"2xl"}>How many to do? <ul>
-            <li>6 to 12 reps</li>
+            <li>3 sets of 6 to 12 reps</li>
             <li>5 to 10 lbs of weight</li>
             <li>After a week increase by 5 lbs</li>
           </ul></Text>
@@ -60,9 +61,28 @@ const Eupper = () => {
             <li>Repeat the previous two steps.</li>
           </ol>
           <Text fontSize={"2xl"}>How many to do? <ul>
-            <li>6 to 12 reps</li>
+            <li>3 sets of 6 to 12 reps</li>
             <li>5 to 10 lbs of weight</li>
             <li>After a week increase by 5 lbs</li>
+          </ul></Text>
+          </VStack>
+        </HStack>
+        <br/>
+
+        <Heading textTransform={"uppercase"} py="2" w={"fit-content"} borderBottom={'2px solid'} m="auto">Back Extensions</Heading>
+        <HStack>
+          <Image src={extensions}  h={['40','300']}/>
+          <VStack>
+          <Text>This is a good exercise for strengthening the back and core.  It’s best done on a mat rather than on a hard floor.  If you find it too easy, try it with your hands behind your head.</Text>
+          <ol style={{ listStyleType: 'decimal' }}>
+            <li>Lie face-down on the mat and place your hands on the floor next to your ears, elbows bent.</li>
+            <li>Engage your abs and slowly lift your chest off the ground, focusing on using the lower back muscles.</li>
+            <li>You can gently use your hands for support if you need to, but try lifting them also, parallel to your body, so that you use your back muscles as much as possible.</li>
+            <li>Lower and repeat.</li>
+          </ol>
+          <Text fontSize={"2xl"}>How many to do? <ul>
+            <li>3 sets of 8 to 10 reps</li>
+            <li>no weight</li>
           </ul></Text>
           </VStack>
         </HStack>

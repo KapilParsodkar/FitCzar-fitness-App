@@ -14,7 +14,7 @@ import Elegs from './Exercises/Elegs';
 import Eupper from './Exercises/Eupper';
 import Mupper from './Exercises/Mupper';
 import Mlegs from './Exercises/Mlegs';
-import HUpper from './Exercises/HUpper';
+import Hupper from './Exercises/Hupper';
 import Hlegs from './Exercises/Hlegs';
 
 
@@ -46,7 +46,7 @@ function App() {
         <Route path="/mlegs" element={<Mlegs/>}/>
         <Route path="/mupper" element={<Mupper/>}/>
         <Route path="/hlegs" element={<Hlegs/>}/>
-        <Route path="/hupper" element={<HUpper/>}/>
+        <Route path="/hupper" element={<Hupper/>}/>
             </Routes>
 
      <Footer/>

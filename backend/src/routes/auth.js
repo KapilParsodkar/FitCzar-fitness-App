@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -54,37 +53,37 @@ router.post('/register', async (req, res, next) => {
 
 
 // Login Route
-router.post('/login', (req, res, next) => {
-  let fetchedUser;
-  User.findOne({ email: req.body.email })
-    .then(user => {
-      if (!user) {
-        return res.status(401).json({
-          message: 'Authentication failed!'
-        });
-      }
-      fetchedUser = user;
-      return bcrypt.compare(req.body.password, user.password);
-    })
-    .then(result => {
-      if (!result) {
-        return res.status(401).json({
-          message: 'Authentication failed!'
-        });
-      }
-      const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id }, 'secret_key', { expiresIn: '1h' });
-      res.status(200).json({
-        token: token,
-        expiresIn: 3600,
-        userId: fetchedUser._id
-      });
-    })
-    .catch(err => {
+router.post('/login', async (req, res, next) => {
+  try {
+    const user = await User.findOne({ email: req.body.email });
+    if (!user) {
       return res.status(401).json({
-        message: 'Authentication failed!'
+        message: 'Authentication failed!',
       });
+    }
+    const result = await bcrypt.compare(req.body.password, user.password);
+    if (!result) {
+      return res.status(401).json({
+        message: 'Authentication failed!',
+      });
+    }
+    const token = jwt.sign(
+      { email: user.email, userId: user._id },
+      'secret_key',
+      { expiresIn: '1h' }
+    );
+    res.status(200).json({
+      token: token,
+      expiresIn: 3600,
+      userId: user._id,
     });
+  } catch (err) {
+    return res.status(401).json({
+      message: 'Authentication failed!',
+    });
+  }
 });
+
 
 
 // Logout route

@@ -50,7 +50,7 @@ router.put('/update-profile/:id', checkAuth, async (req, res, next) => {
 router.delete('/:id', checkAuth, (req, res, next) => {
   const userId = req.params.id;
 
-  User.findByIdAndDelete(userId)
+  User.findByIdAndRemove(userId)
     .then(user => {
       if (!user) {
         return res.status(404).json({ message: 'User not found' });

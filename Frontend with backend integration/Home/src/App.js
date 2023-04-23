@@ -16,27 +16,20 @@ import Mupper from './Exercises/Mupper';
 import Mlegs from './Exercises/Mlegs';
 import Hupper from './Exercises/Hupper';
 import Hlegs from './Exercises/Hlegs';
-
+import PrivateComp from './components/PrivateComp';
+import Exerciselist from './components/Exerciselist';
+import AddExercises from './components/AddExercises';
+import UpdateExercises from './components/updateExercise';
 
 function App() {
-  const [ user, setLoginUser] = useState({})
-  return (
 
+  return (
+      <div>
      <Router>
      <Header/>
      <Routes>
-      <Route path="/" element={<Home/>}/>
-  
-      <Route path="/exercisehome" element={
-           user && user._id ? <ExerciseHome setLoginUser={setLoginUser} /> : <Login setLoginUser={setLoginUser}/>
-        }/>
-           
-
-        <Route path="/login" element={<Login setLoginUser={setLoginUser}/>}/>
-
-        <Route path="/signup" element={<Signup />}/>
-
-    
+     <Route element={<PrivateComp/>}>
+        <Route path="/" element={<Home/>}/>
         <Route path="/profile" element={<Profile/>}/>
          <Route path="/easy" element={<Easy/>}/>
         <Route path="/medium" element={<Medium/>}/>
@@ -47,10 +40,20 @@ function App() {
         <Route path="/mupper" element={<Mupper/>}/>
         <Route path="/hlegs" element={<Hlegs/>}/>
         <Route path="/hupper" element={<Hupper/>}/>
-            </Routes>
+        <Route path="/exerciselist" element={<Exerciselist/>}/>
+     <Route path="/add" element={<AddExercises/>}/>
+     <Route path="/update/:id" element={<UpdateExercises/>}/>
+     <Route path="/logout" element={<h1> logout Product list</h1>}/>
+     <Route path="/profile" element={<h1> profile Product list</h1>}/>
+        </Route>
 
+        <Route path="/signup" element={<Signup/>}/>
+     <Route path="/login" element={<Login/>}/>
+     </Routes>
+      </Router>
      <Footer/>
-</Router>
+     </div>
+
   );
 }
 

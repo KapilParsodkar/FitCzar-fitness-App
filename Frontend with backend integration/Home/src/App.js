@@ -44,7 +44,7 @@ function App() {
      <Route path="/add" element={<AddExercises/>}/>
      <Route path="/update/:id" element={<UpdateExercises/>}/>
      <Route path="/logout" element={<h1> logout Product list</h1>}/>
-     <Route path="/profile" element={<h1> profile Product list</h1>}/>
+     <Route path="/profile" element={<Profile/>}/>
         </Route>
 
         <Route path="/signup" element={<Signup/>}/>

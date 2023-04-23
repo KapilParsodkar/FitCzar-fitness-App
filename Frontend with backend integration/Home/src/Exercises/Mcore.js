@@ -20,6 +20,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 
 import plank from "../assests/core/plank.png"
 import birdDogMed from "../assests/core/birdDogMed.png"
+import mountainClimber from "../assests/core/mountainClimber.png"
 
 
 const Mcore = () => {
@@ -63,6 +64,25 @@ const Mcore = () => {
           </ol>
           <Text fontSize={"2xl"}>How many to do? <ul>
             <li>8 to 12 reps, each side</li>
+            <li>After a week, increase number of reps by half</li>
+          </ul></Text>
+          </VStack>
+        </HStack>
+        <br/>
+
+        <Heading textTransform={"uppercase"} py="2" w={"fit-content"} borderBottom={'2px solid'} m="auto">Mountain Climbers</Heading>
+        <HStack>
+          <Image src={mountainClimber}  h={['40','300']}/>
+          <VStack>
+          <Text>This exercise has some of the benefits of a plank, while also providing a knee-limbering workout, balance training, and an aerobic boost.</Text>
+          <ol style={{ listStyleType: 'decimal' }}>
+            <li>Start in plank position but with your hands resting on the ground rather than your forearms.</li>
+            <li>Lunge your right knee toward your chest, keeping your back straight and your hips down.</li>
+            <li>Return your right leg to the starting position while simultaneously lunging your left knee to your chest.</li>
+            <li>Continue alternating legs.</li>
+          </ol>
+          <Text fontSize={"2xl"}>How many to do? <ul>
+            <li>10 to 16 reps, each side</li>
             <li>After a week, increase number of reps by half</li>
           </ul></Text>
           </VStack>

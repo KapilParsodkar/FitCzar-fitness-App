@@ -21,7 +21,7 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 import squats from "../assests/legs/squats.png"
 import curl from "../assests/legs/curl.png"
 import extensions from "../assests/legs/extensions.jpeg"
-import lunges from "../assests/legs/lunges.png"
+import lungeWeight from "../assests/legs/lungeWeights.png"
 
 
 const Mlegs = () => {
@@ -48,8 +48,8 @@ const Mlegs = () => {
           </ol>
           <Text fontSize={"2xl"}>How many to do? <ul>
             <li>10-12 reps</li>
-            <li>20 to 40 lbs of weight</li>
-            <li>After a week increase by 10 lbs</li>
+            <li>60 to 100 lbs of weight</li>
+            <li>After a week increase by 20 lbs</li>
           </ul></Text>
           </VStack>
         </HStack>
@@ -68,7 +68,7 @@ const Mlegs = () => {
           </ol>
           <Text fontSize={"2xl"}>How many to do?<ul>
             <li>10-12 reps</li>
-            <li>50 to 60 lbs of weight</li>
+            <li>60 to 100 lbs of weight</li>
             <li>After a week increase by 10 lbs</li>
           </ul></Text>
           </VStack>
@@ -80,16 +80,16 @@ const Mlegs = () => {
           <Image src={extensions}  h={['40', '300']}/>
           <VStack>
           <Text>Leg extensions target the quadriceps, the large muscles of the front of the thigh.  If your main cardio exercise is walking or running, which relies more on the hamstring muscle at the back of the thigh, leg extensions are especially beneficial to add balance to your leg workouts.</Text>
-          <Text>This exercise is normally done on the bench of a lever machine, but can be performed in a chair while wearing ankle weights.  Position the bench or chair so that your knees bend at a 90° angle when seated and the pads or weights are against your ankles.</Text>
+          <Text>This exercise is done on the bench of a lever machine.  Position the bench so that your knees bend at a 90° angle when seated and the pads are against your ankles.</Text>
           <ol style={{ listStyleType: 'decimal' }}>
-            <li>Grasp the handlebars or armrests to brace yourself</li>
-            <li>On a machine, lift and lower both legs together; if using ankle weights, lift and lower one leg, then the other</li>
+            <li>Grasp the handlebars to brace yourself</li>
+            <li>Lift and lower both legs together</li>
             <li>Lift the weight by extending your lower legs while exhaling, until your legs are almost straight; don't lock your knees or arch your back; keep your back against the backrest</li>
             <li>Exhale and lower the weight to the starting position</li>
           </ol>
           <Text fontSize={"2xl"}>How many to do?<ul>
             <li>three sets of 10-12 repetitions</li>
-            <li>30 to 40 lbs of weight</li>
+            <li>50 to 80 lbs of weight</li>
             <li>After a week increase by 10 lbs</li>
           </ul></Text>
           </VStack>
@@ -98,7 +98,7 @@ const Mlegs = () => {
 
         <Heading textTransform={"uppercase"} py="2" w={"fit-content"} borderBottom={'2px solid'} m="auto">Lunges</Heading>
         <HStack>
-          <Image src={lunges}  h={['40', '300']}/>
+          <Image src={lungeWeight}  h={['40', '300']}/>
           <VStack>
           <Text>Lunges tone and strengthen most of the lower body, including the quads, hamstrings, glutes, and calves.  They also improve hip flexibility, which is important for anyone who spends much of the day sitting.  They're a good complement to squats.</Text>
           <ol style={{ listStyleType: 'decimal' }}>
@@ -109,7 +109,7 @@ const Mlegs = () => {
           </ol>
           <Text fontSize={"2xl"}>How many to do?<ul>
             <li>three sets of 8-10 repetitions</li>
-            <li>two dumbells, 10 to 20 lbs of weight total</li>
+            <li>two dumbells, 30 to 50 lbs of weight total</li>
             <li>After a week add 2 more repetitions per side</li>
           </ul></Text>
           </VStack>

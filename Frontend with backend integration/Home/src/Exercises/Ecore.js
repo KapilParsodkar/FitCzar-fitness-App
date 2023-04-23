@@ -32,6 +32,8 @@ const Ecore = () => {
     <Box>
       <Text style={{ textAlign: 'center' }} fontSize={"6xl"}>Core Exercises - Beginning</Text>
       <VStack>
+      
+      <Text>The body’s core is the area that includes the pelvis, lower back, hips, and stomach.  Core exercises train the muscles of these areas to work together, improving balance, stability, endurance, and overall fitness.  Almost all physical activity depends on the core.</Text>
 
         <Heading textTransform={"uppercase"} py="2" w={"fit-content"} borderBottom={'2px solid'} m="auto">Knee Tucks</Heading>
         <HStack>

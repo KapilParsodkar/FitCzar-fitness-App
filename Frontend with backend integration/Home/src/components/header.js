@@ -57,7 +57,7 @@ const Header = () => {
       <Link to={'/add'}>Add Exercises</Link>
     </Button>
     <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
-      <Link to={'/profile'}>Add Exercises</Link>
+      <Link to={'/profile'}>Profile</Link>
     </Button>
 
     <Button  onClick={logout}  variant={'ghost'} colorScheme={"cyan"}>

@@ -33,7 +33,7 @@ const AddExercises = () => {
     }
   return (
     <div className='product'>
-        <h1>Add Product</h1>
+        <h1>Add exercise</h1>
         <input className='inputbox' type="text" placeholder='enter exercise name'
         value={name}
       onChange={(e)=>{setname(e.target.value)}}

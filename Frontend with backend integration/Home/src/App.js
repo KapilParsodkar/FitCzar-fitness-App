@@ -12,6 +12,8 @@ import Hard from './Exercises/Hard';
 import Medium from './Exercises/Medium';
 import Elegs from './Exercises/Elegs';
 import Eupper from './Exercises/Eupper';
+import Ecore from './Exercises/Ecore';
+import Mcore from './Exercises/Mcore';
 import Mupper from './Exercises/Mupper';
 import Mlegs from './Exercises/Mlegs';
 import Hupper from './Exercises/Hupper';
@@ -25,34 +27,40 @@ function App() {
 
   return (
       <div>
-     <Router>
-     <Header/>
-     <Routes>
-     <Route element={<PrivateComp/>}>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/profile" element={<Profile/>}/>
-         <Route path="/easy" element={<Easy/>}/>
-        <Route path="/medium" element={<Medium/>}/>
-        <Route path="/hard" element={<Hard/>}/>
-        <Route path="/elegs" element={<Elegs/>}/>
-        <Route path="/eupper" element={<Eupper/>}/>
-        <Route path="/mlegs" element={<Mlegs/>}/>
-        <Route path="/mupper" element={<Mupper/>}/>
-        <Route path="/hlegs" element={<Hlegs/>}/>
-        <Route path="/hupper" element={<Hupper/>}/>
-        <Route path="/exerciselist" element={<Exerciselist/>}/>
-     <Route path="/add" element={<AddExercises/>}/>
-     <Route path="/update/:id" element={<UpdateExercises/>}/>
-     <Route path="/logout" element={<h1> logout Product list</h1>}/>
-     <Route path="/profile" element={<Profile/>}/>
-        </Route>
+      <Router>
+      <Header/>
+      <Routes>
+      <Route element={<PrivateComp/>}>
+         <Route path="/" element={<Home/>}/>
+         <Route path="/profile" element={<Profile/>}/>
 
-        <Route path="/signup" element={<Signup/>}/>
-     <Route path="/login" element={<Login/>}/>
-     </Routes>
+         <Route path="/easy" element={<Easy/>}/>
+         <Route path="/medium" element={<Medium/>}/>
+         <Route path="/hard" element={<Hard/>}/>
+
+         <Route path="/elegs" element={<Elegs/>}/>
+         <Route path="/eupper" element={<Eupper/>}/>
+         <Route path="/ecore" element={<Ecore/>}/>
+
+         <Route path="/mlegs" element={<Mlegs/>}/>
+         <Route path="/mupper" element={<Mupper/>}/>
+         <Route path="/mcore" element={<Mcore/>}/>
+
+         <Route path="/hlegs" element={<Hlegs/>}/>
+         <Route path="/hupper" element={<Hupper/>}/>
+
+         <Route path="/exerciselist" element={<Exerciselist/>}/>
+         <Route path="/add" element={<AddExercises/>}/>
+         <Route path="/update/:id" element={<UpdateExercises/>}/>
+         <Route path="/logout" element={<h1> logout Product list</h1>}/>
+         </Route>
+
+         <Route path="/signup" element={<Signup/>}/>
+         <Route path="/login" element={<Login/>}/>
+      </Routes>
       </Router>
-     <Footer/>
-     </div>
+      <Footer/>
+      </div>
 
   );
 }

@@ -126,5 +126,3 @@ const Elegs = () => {
 }
 
 export default Elegs
-
-

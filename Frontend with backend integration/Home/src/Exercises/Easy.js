@@ -30,15 +30,18 @@ const Easy = () => {
         my={"16"}
       >
 
-    
-
         <div className="button" onClick={() => nav("/elegs")}>
-          Easy legs
+          Easy leg exercises
         </div>
         
         <div className="button" onClick={() => nav("/eupper")}>
-          Easy upper
+          Easy upper-body exercises
         </div>
+        
+        <div className="button" onClick={() => nav("/ecore")}>
+          Easy core exercises
+        </div>
+        
       </VStack>
     </Container>
   )

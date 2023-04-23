@@ -69,6 +69,7 @@ const Profile = ({setLoginUser}) => {
  
     .then((response) => {
       setPost(response.data);
+      console.log(post)
     });
   }, []);
 

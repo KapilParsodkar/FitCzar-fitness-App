@@ -30,15 +30,18 @@ const Medium = () => {
         my={"16"}
       >
 
-    
-
         <div className="button" onClick={() => nav("/mlegs")}>
-          Medium legs
+          Intermediate leg exercises
         </div>
         
         <div className="button" onClick={() => nav("/mupper")}>
-    Medium upper
+          Intermediate upper-body exercises
         </div>
+
+        <div className="button" onClick={() => nav("/mcore")}>
+          Intermediate core exercises
+        </div>
+
       </VStack>
     </Container>
   )

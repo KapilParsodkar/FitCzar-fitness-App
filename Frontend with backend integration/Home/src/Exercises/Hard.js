@@ -33,11 +33,11 @@ const Hard = () => {
     
 
         <div className="button" onClick={() => nav("/hlegs")}>
-       Hard legs
+          Hard leg exercises
         </div>
         
         <div className="button" onClick={() => nav("/hupper")}>
-         Hard upper
+          Hard upper-body exercises
         </div>
       </VStack>
     </Container>

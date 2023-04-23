@@ -64,7 +64,7 @@ app.post("/login", (req, res) => {
       if (user) {
         bcrypt.compare(password, user.password, function (err, result) {
           if (result === true) {
-            res.send({ message: "Login Successfull", user: user });
+            res.send({ message: "Login successful", user: user });
           } else {
             res.send({ message: "Password did not match" });
           }

@@ -1,3 +1,6 @@
+[![ArunRao1997](https://circleci.com/gh/ArunRao1997/FitCzar-fitness-App/backend.svg?style=svg)](https://app.circleci.com/pipelines/github/ArunRao1997/FitCzar-fitness-App/backend?branch=main&filter=all)
+
+
 FitCzar Project 
 Introduction
 FitCzar is a planned Web application for assisting users as they pursue customized health and fitness goals.  It will track progress, make recommendations, accept user choices and updates, and connect users with resources to support their health and fitness journey.

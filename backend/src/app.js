@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', false); // to address deprecation warning
@@ -51,9 +52,3 @@ app.use('/api/user', userRoutes);
 app.use('/api/workouts', workoutRoutes);
 
 module.exports = app;
-
-// Start the server
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});

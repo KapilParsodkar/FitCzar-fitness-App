@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@3.1.2
+
+jobs:
+  build_and_test:
+    executor:
+      name: node/default
+      tag: 'current'
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: yarn
+      - run:
+          name: Run Jest tests
+          command: yarn test
+
+workflows:
+  version: 2
+  build_and_test_workflow:
+    jobs:
+      - build_and_test

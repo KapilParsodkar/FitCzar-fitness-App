@@ -59,6 +59,9 @@ const Header = () => {
     <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
       <Link to={'/profile'}>Profile</Link>
     </Button>
+    <Button  onClick={onClose}  variant={'ghost'} colorScheme={"cyan"}>
+      <Link to={'/profileshow'}>ProfileDetails</Link>
+    </Button>
 
     <Button  onClick={logout}  variant={'ghost'} colorScheme={"cyan"}>
     Logout ({JSON.parse(auth).name})

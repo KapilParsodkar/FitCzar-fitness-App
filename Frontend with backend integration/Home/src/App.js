@@ -13,6 +13,7 @@ import Medium from './Exercises/Medium';
 import Elegs from './Exercises/Elegs';
 import Eupper from './Exercises/Eupper';
 import Ecore from './Exercises/Ecore';
+import Eaerobic from './Exercises/Eaerobic';
 import Mcore from './Exercises/Mcore';
 import Mupper from './Exercises/Mupper';
 import Mlegs from './Exercises/Mlegs';
@@ -41,6 +42,7 @@ function App() {
          <Route path="/elegs" element={<Elegs/>}/>
          <Route path="/eupper" element={<Eupper/>}/>
          <Route path="/ecore" element={<Ecore/>}/>
+         <Route path="/eaerobic" element={<Eaerobic/>}/>
 
          <Route path="/mlegs" element={<Mlegs/>}/>
          <Route path="/mupper" element={<Mupper/>}/>

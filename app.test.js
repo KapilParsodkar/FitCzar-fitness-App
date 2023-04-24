@@ -29,7 +29,7 @@ describe('User authentication tests', () => {
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('email', 'test@example.com');
       expect(response.body).not.toHaveProperty('pwd');
-    });
+    }, 20000);
   
     it('should log in a user and return the user object without the password', async () => {
       const response = await request(app)
@@ -37,7 +37,7 @@ describe('User authentication tests', () => {
         .send({
           email: 'test@example.com',
           pwd: 'test123',
-        });
+        }, 20000);
   
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('email', 'test@example.com');

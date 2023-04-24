@@ -4,12 +4,13 @@ jobs:
   build_and_test:
     docker:
       - image: circleci/node:14.17.1
+    working_directory: ~/repo/FitCzar-fitness-App/Frontend with backend integration
     steps:
       - checkout
-      - run: cd Frontend with backend integration && yarn install
+      - run: yarn install
       - run:
           name: Run Jest tests
-          command: cd Frontend with backend integration && yarn test
+          command: yarn test
 
 workflows:
   version: 2

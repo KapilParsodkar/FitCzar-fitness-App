@@ -42,6 +42,10 @@ const Easy = () => {
           Easy core exercises
         </div>
         
+        <div className="button" onClick={() => nav("/eaerobic")}>
+          Easy aerobic exercises
+        </div>
+        
       </VStack>
     </Container>
   )

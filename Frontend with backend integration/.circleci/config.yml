@@ -1,20 +1,15 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@3.1.2
-
 jobs:
   build_and_test:
-    executor:
-      name: node/default
-      tag: 'current'
+    docker:
+      - image: circleci/node:14.17.1
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      - run: cd ./Frontend with backend integration && yarn install
       - run:
           name: Run Jest tests
-          command: yarn test
+          command: cd ./Frontend with backend integration && yarn test
 
 workflows:
   version: 2

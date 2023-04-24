@@ -1,5 +1,4 @@
 const app = require('./index');
-const mongoose = require('mongoose');
 const supertest = require('supertest');
 const request = supertest;
 
@@ -13,7 +12,6 @@ beforeAll(async () => {
 
 afterAll(async () => {
   await server.close();
-  await mongoose.disconnect();
 });
 
 describe('User authentication tests', () => {
@@ -37,11 +35,11 @@ describe('User authentication tests', () => {
         .send({
           email: 'test@example.com',
           pwd: 'test123',
-        }, 20000);
+        });
   
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('email', 'test@example.com');
-    });
+    }, 20000);
   });
   
   describe('Exercise management tests', () => {

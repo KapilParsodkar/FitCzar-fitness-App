@@ -3,6 +3,7 @@ const cors=require("cors");
 require('./db/config')
 const User=require("./db/user") 
 const Exercisedb=require("./db/exercisedb")
+const Profiledb=require("./db/Profile")
 const app=express()
 app.use(express.json())
 app.use(cors())
@@ -30,6 +31,13 @@ app.post("/add-exercise",async (req,res)=>{
   let exercise=new Exercisedb(req.body)
   let result=await exercise.save()
   res.send(result)
+})
+
+app.post("/profile",async(req,res)=>{
+   let profile=new Profiledb(req.body)
+   let result=await profile.save()
+   res.send(result)
+
 })
 
 
@@ -65,6 +73,8 @@ app.put("/exercise/:id",async(req,res)=>{
     })
     res.send(result)
 })
+
+
 
 app.listen(3001,()=>{
     console.log("http://localhost:3001/")

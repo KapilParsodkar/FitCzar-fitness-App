@@ -22,6 +22,7 @@ import PrivateComp from './components/PrivateComp';
 import Exerciselist from './components/Exerciselist';
 import AddExercises from './components/AddExercises';
 import UpdateExercises from './components/updateExercise';
+import profileshow from './components/profileshow';
 
 function App() {
 
@@ -33,7 +34,7 @@ function App() {
       <Route element={<PrivateComp/>}>
          <Route path="/" element={<Home/>}/>
          <Route path="/profile" element={<Profile/>}/>
-
+         <Route path="/profileshow" element={<profileshow/>}/>
          <Route path="/easy" element={<Easy/>}/>
          <Route path="/medium" element={<Medium/>}/>
          <Route path="/hard" element={<Hard/>}/>

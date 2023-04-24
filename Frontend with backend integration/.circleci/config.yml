@@ -6,10 +6,10 @@ jobs:
       - image: circleci/node:14.17.1
     steps:
       - checkout
-      - run: cd ./Frontend with backend integration && yarn install
+      - run: cd FitCzar-fitness-App/Frontend with backend integration/.circleci/config.yml && yarn install
       - run:
           name: Run Jest tests
-          command: cd ./Frontend with backend integration && yarn test
+          command: cd FitCzar-fitness-App/Frontend with backend integration/.circleci/config.yml && yarn test
 
 workflows:
   version: 2

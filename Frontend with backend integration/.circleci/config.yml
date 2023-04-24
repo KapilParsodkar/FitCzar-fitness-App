@@ -1,17 +1,13 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@3.1.2
-
 jobs:
   build_and_test:
-    executor:
-      name: node/default
-      tag: 'current'
+    docker:
+      - image: circleci/node:14.17.1
+    working_directory: ~/repo/FitCzar-fitness-App/Frontend with backend integration
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      - run: yarn install
       - run:
           name: Run Jest tests
           command: yarn test

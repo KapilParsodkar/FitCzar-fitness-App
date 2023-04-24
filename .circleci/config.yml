@@ -23,10 +23,10 @@ jobs:
     working_directory: ~/repo/FitCzar-fitness-App
     steps:
       - checkout
-      - run: cd Frontend && yarn install
+      - run: yarn install
       - run:
           name: Run Jest tests
-          command: cd Frontend && yarn test
+          command: yarn test
 
 workflows:
   version: 2

@@ -1,19 +1,36 @@
 version: 2.1
 
 jobs:
+  setup-node:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - run:
+          name: Install Node.js version 16.x
+          command: |
+            curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+      - run:
+          name: Install Yarn
+          command: |
+            curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+            echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+            sudo apt-get update && sudo apt-get install -y yarn
+
   build_and_test:
     docker:
-      - image: circleci/node:14.17.1
+      - image: circleci/node:16
     working_directory: ~/repo/FitCzar-fitness-App
     steps:
       - checkout
-      - run: yarn install
+      - run: cd Frontend && yarn install
       - run:
           name: Run Jest tests
-          command: yarn test
+          command: cd Frontend && yarn test
 
 workflows:
   version: 2
   build_and_test_workflow:
     jobs:
+      - setup-node
       - build_and_test

@@ -40,6 +40,25 @@ app.post("/profile",async(req,res)=>{
 
 })
 
+app.get("/profile/:id",async(req,res)=>{
+    let result=await Profiledb.findOne({_id:req.params.id})
+    if(result){
+       res.send(result)
+    }else{
+       res.send({result:"no record found"})
+    }
+})
+
+
+app.get("/profiled",async (req,res)=>{
+    let profile=await Profiledb.find()
+    if(profile.length>0){
+     res.send(profile)
+    }else{
+     res.send({result:"no record found"})
+    }
+ })
+
 
 app.get("/exercises",async (req,res)=>{
    let exercises=await Exercisedb.find()

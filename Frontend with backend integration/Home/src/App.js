@@ -16,13 +16,13 @@ import Ecore from './Exercises/Ecore';
 import Mcore from './Exercises/Mcore';
 import Mupper from './Exercises/Mupper';
 import Mlegs from './Exercises/Mlegs';
-import Hupper from './Exercises/Hupper';
+import Hupper from './Exercises/HUpper';
 import Hlegs from './Exercises/Hlegs';
 import PrivateComp from './components/PrivateComp';
 import Exerciselist from './components/Exerciselist';
 import AddExercises from './components/AddExercises';
 import UpdateExercises from './components/updateExercise';
-import profileshow from './components/profileshow';
+import Profileshow from './components/profileshow';
 
 function App() {
 
@@ -34,7 +34,7 @@ function App() {
       <Route element={<PrivateComp/>}>
          <Route path="/" element={<Home/>}/>
          <Route path="/profile" element={<Profile/>}/>
-         <Route path="/profileshow" element={<profileshow/>}/>
+         <Route path="/profileshow" element={<Profileshow/>}/>
          <Route path="/easy" element={<Easy/>}/>
          <Route path="/medium" element={<Medium/>}/>
          <Route path="/hard" element={<Hard/>}/>

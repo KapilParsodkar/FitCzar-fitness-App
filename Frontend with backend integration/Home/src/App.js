@@ -16,7 +16,7 @@ import Ecore from './Exercises/Ecore';
 import Mcore from './Exercises/Mcore';
 import Mupper from './Exercises/Mupper';
 import Mlegs from './Exercises/Mlegs';
-import Hupper from './Exercises/HUpper';
+import Hupper from './Exercises/Hupper';
 import Hlegs from './Exercises/Hlegs';
 import PrivateComp from './components/PrivateComp';
 import Exerciselist from './components/Exerciselist';

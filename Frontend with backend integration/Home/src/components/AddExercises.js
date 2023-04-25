@@ -1,6 +1,7 @@
 
 import React,{useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {Text} from "@chakra-ui/react"
 
 const AddExercises = () => {
     const nav=useNavigate()
@@ -33,7 +34,7 @@ const AddExercises = () => {
     }
   return (
     <div className='product'>
-        <h1>Add exercise</h1>
+        <Text fontSize="6xl">Add Exercise</Text>
         <input className='inputbox' type="text" placeholder='enter exercise name'
         value={name}
       onChange={(e)=>{setname(e.target.value)}}

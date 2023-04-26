@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server.js",
     "test": "cross-env PORT=3003 jest"
   },  
   "author": "",

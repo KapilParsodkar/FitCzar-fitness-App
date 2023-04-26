@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 
-import squats from "../assests/legs/squats.png"
+import squats from "../assests/legs/squatsWeight.png"
 import curl from "../assests/legs/curl.png"
 import extensions from "../assests/legs/extensions.jpeg"
 import lungeWeight from "../assests/legs/lungeWeights.png"

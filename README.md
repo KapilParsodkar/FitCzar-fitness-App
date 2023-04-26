@@ -31,7 +31,6 @@ For users of the free version, it will send advertisements for health and fitnes
 
 The database, hosted on the same service as the analysis program, will store all data and recommendations for each user.
 
-## Launch Fitczar App on Vercel:
-(https://fitczar-fitness-app.vercel.app)
+## Launch Fitczar App on Vercel:https://fitczar-fitness-app.vercel.app
 
 

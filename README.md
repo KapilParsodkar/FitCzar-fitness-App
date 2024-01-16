@@ -38,7 +38,7 @@ The database, hosted on the same service as the analysis program, will store all
 4) project will run 
 5) Thank you
 
-## Launch Fitczar App on Vercel:https://fitczar-fitness-app.vercel.app  
-without database(https://fitczar-fit-app.vercel.app/)
+## Launch Fitczar App on Vercel https://fitczar-fit-app.vercel.app/
+
 
 
